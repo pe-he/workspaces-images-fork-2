@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Neo4j Desktop
+Exec=/opt/neo4j-desktop/neo4j-desktop --no-sandbox %U
+Terminal=false
+Type=Application
+Icon=/opt/neo4j-desktop/neo4j-desktop.png
+StartupWMClass=Neo4j Desktop
+X-AppImage-Version=1.5.7
+Comment=Neo4j Desktop
+MimeType=x-scheme-handler/neo4j;x-scheme-handler/neo4j-desktop;
+Categories=Database;Development;

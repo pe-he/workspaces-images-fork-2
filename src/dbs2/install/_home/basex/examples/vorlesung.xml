@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vorlesung>
+	<beispiel1>
+		<!-- erster Kommentar-->
+		<A>
+			erster Text
+			<B>
+				zweiter Text
+				<B attr="wert">
+					dritter Text
+				</B>
+			</B>
+			<!-- zweiter Kommentar -->
+		</A>
+	</beispiel1>
+	<beispiel2>
+		<!-- erster Kommentar-->
+		<A>
+			erster Text
+			<B>
+				zweiter Text
+				<B>
+					dritter Text
+				</B>
+				<B attr="wert">
+					vierter Text
+				</B>
+			</B>
+			<!-- zweiter Kommentar -->
+		</A>		
+	</beispiel2>
+	<beispiel3>
+		<A attr1="val1" attr2="val2">
+			<B attr2="val3">
+				Text
+			</B>
+			<B>Text</B>
+			<A>Text</A>
+		</A>
+	</beispiel3>
+	<beispiel4>
+		<A a="5" b="8">
+			<B a="20">Guten</B>
+			<B>
+				<A a="1">Morgen</A>
+				<C>Heute</C>
+			</B>
+			<B a="50">Tag</B>
+			<A>Abend</A>
+		</A>
+	</beispiel4>
+	<beispiel5>
+		<A>A1
+			<A>A2
+				<C>C1</C>
+				<B>B1</B>
+			</A>
+			<A>A3
+				<B>B2
+					<C>C2</C>
+				</B>
+				<B>B3
+					<B>B4</B>
+					<B>B5</B>
+					<C>C2</C>
+				</B>
+			</A>
+			<A>A4
+				<B>B6</B>
+				<B>B7</B>
+			</A>
+			<A>A5
+			</A>
+		</A>
+	</beispiel5>
+	<adressbuch>
+		<adresse>
+			<name geschlecht="m">
+				<vorname>Jim</vorname>
+				<nachname>Panse</nachname>
+			</name>
+			<strasse>Primatenring 16</strasse>
+			<ort plz="12345">Affenbach</ort>
+		</adresse>
+		<adresse>
+			<name geschlecht="m">
+				<vorname>Bernhard</vorname>
+				<nachname>Diener</nachname>
+			</name>
+			<strasse>Dackelgasse 9</strasse>
+			<ort plz="54321">Köteringen</ort>
+		</adresse>
+		<adresse>
+			<name geschlecht="w">
+				<vorname>Wanda</vorname>
+				<nachname>Düne</nachname>
+			</name>
+			<strasse>Küstenstraße 1</strasse>
+			<ort plz="77777">Süddeich</ort>
+		</adresse>
+	</adressbuch>
+</vorlesung>

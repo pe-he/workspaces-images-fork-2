@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<Tree>
+  <Knoten Marke="a">
+    <Knoten Marke="b">
+      <Knoten Marke="c"/>
+    </Knoten>   
+    <Knoten Marke="d">
+      <Knoten Marke="e"/>
+      <Knoten Marke="f">
+        <Knoten Marke="g"/>
+        <Knoten Marke="h"/>
+        <Knoten Marke="i">
+          <Knoten Marke="j">
+            <Knoten Marke="k"/>
+            <Knoten Marke="l"/>
+          </Knoten>
+          <Knoten Marke="m">
+            <Knoten Marke="n"/>
+            <Knoten Marke="o"/>
+          </Knoten>
+        </Knoten>
+        <Knoten Marke="p"/>
+        <Knoten Marke="q"/>
+      </Knoten>
+    </Knoten>
+    <Knoten Marke="r">
+      <Knoten Marke="s"/>
+      <Knoten Marke="t"/>
+    </Knoten>  
+  </Knoten> 
+</Tree>
