@@ -88,8 +88,8 @@ COPY ./src/dbs2/install/mysql-workbench-oracle $INST_SCRIPTS/mysql-workbench/
 RUN bash $INST_SCRIPTS/mysql-workbench/install_mysql-workbench.sh && rm -rf $INST_SCRIPTS/mysql-workbench/
 
 ### Install Neo4j-Desktop
-COPY ./src/dbs2/install/neo4j-desktop $INST_SCRIPTS/neo4j-desktop/
-RUN bash $INST_SCRIPTS/neo4j-desktop/install_neo4j-desktop.sh && rm -rf $INST_SCRIPTS/neo4j-desktop/
+#COPY ./src/dbs2/install/neo4j-desktop $INST_SCRIPTS/neo4j-desktop/
+#RUN bash $INST_SCRIPTS/neo4j-desktop/install_neo4j-desktop.sh && rm -rf $INST_SCRIPTS/neo4j-desktop/
 
 ### Install Cassandra
 COPY ./src/dbs2/install/cassandra $INST_SCRIPTS/cassandra/
