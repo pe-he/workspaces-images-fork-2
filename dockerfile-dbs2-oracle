@@ -1,0 +1,117 @@
+ARG BASE_TAG="develop"
+#ARG BASE_IMAGE="core-ubuntu-jammy"
+#FROM kasmweb/$BASE_IMAGE:$BASE_TAG
+ARG BASE_IMAGE="core-dbs2-jammy"
+FROM peterhertkorn/$BASE_IMAGE:$BASE_TAG
+
+USER root
+
+ENV HOME /home/kasm-default-profile
+ENV STARTUPDIR /dockerstartup
+WORKDIR $HOME
+
+#COPY ./src/dbs2/custom_startup.sh $STARTUPDIR/custom_startup.sh
+#RUN chmod +x $STARTUPDIR/custom_startup.sh
+#RUN chmod 755 $STARTUPDIR/custom_startup.sh
+
+### Environment config
+ENV DEBIAN_FRONTEND noninteractive
+ENV KASM_RX_HOME $STARTUPDIR/kasmrx
+ENV INST_SCRIPTS $STARTUPDIR/install
+
+### Install Tools
+COPY ./src/ubuntu/install/tools $INST_SCRIPTS/tools/
+RUN bash $INST_SCRIPTS/tools/install_tools_deluxe.sh && rm -rf $INST_SCRIPTS/tools/
+
+### Install Utilities
+COPY ./src/ubuntu/install/misc $INST_SCRIPTS/misc/
+RUN bash $INST_SCRIPTS/misc/install_tools.sh && rm -rf $INST_SCRIPTS/misc/
+
+### Install Google Chrome
+COPY ./src/ubuntu/install/chrome $INST_SCRIPTS/chrome/
+RUN bash $INST_SCRIPTS/chrome/install_chrome.sh && rm -rf $INST_SCRIPTS/chrome/
+
+### Install Firefox
+COPY ./src/ubuntu/install/firefox/ $INST_SCRIPTS/firefox/
+COPY ./src/ubuntu/install/firefox/firefox.desktop $HOME/Desktop/
+RUN bash $INST_SCRIPTS/firefox/install_firefox.sh && rm -rf $INST_SCRIPTS/firefox/
+
+### Install Sublime Text
+COPY ./src/ubuntu/install/sublime_text $INST_SCRIPTS/sublime_text/
+RUN bash $INST_SCRIPTS/sublime_text/install_sublime_text.sh && rm -rf $INST_SCRIPTS/sublime_text/
+
+### Install Visual Studio Code
+COPY ./src/ubuntu/install/vs_code $INST_SCRIPTS/vs_code/
+RUN bash $INST_SCRIPTS/vs_code/install_vs_code.sh && rm -rf $INST_SCRIPTS/vs_code/
+
+#################
+### DBS2 specific
+#################
+
+### Applications in opt
+#COPY ./src/dbs2/install/_opt/sqldeveloper /opt/sqldeveloper/
+#RUN chown 1000:0 /opt/sqldeveloper
+
+### Data in home
+#COPY ./src/dbs2/install/_home/.config $HOME/.config
+#COPY ./src/dbs2/install/_home/.local $HOME/.local
+COPY ./src/dbs2/install/_home/.vscode $HOME/.vscode
+COPY ./src/dbs2/install/_home/basex $HOME/basex
+
+### Install dbs2 tools
+COPY ./src/dbs2/install/tools $INST_SCRIPTS/tools/
+RUN bash $INST_SCRIPTS/tools/install_tools.sh && rm -rf $INST_SCRIPTS/tools/
+
+### Install BaseX
+COPY ./src/dbs2/install/basex $INST_SCRIPTS/basex/
+#COPY ./src/dbs2/install/basex/basex.jar /usr/share/java/basex.jar
+RUN bash $INST_SCRIPTS/basex/install_basex.sh && rm -rf $INST_SCRIPTS/basex/
+
+### Install Redis
+COPY ./src/dbs2/install/redis $INST_SCRIPTS/redis/
+RUN bash $INST_SCRIPTS/redis/install_redis.sh && rm -rf $INST_SCRIPTS/redis/
+
+### Install MongoDB
+COPY ./src/dbs2/install/mongodb $INST_SCRIPTS/mongodb/
+RUN bash $INST_SCRIPTS/mongodb/install_mongodb.sh && rm -rf $INST_SCRIPTS/mongodb/
+
+### Install MongoDB-Compass
+COPY ./src/dbs2/install/mongodb-compass-oracle $INST_SCRIPTS/mongodb-compass/
+RUN bash $INST_SCRIPTS/mongodb-compass/install_mongodb-compass.sh && rm -rf $INST_SCRIPTS/mongodb-compass/
+
+### Install Oracle SQL Developer
+COPY ./src/dbs2/install/oracle_sql_developer $INST_SCRIPTS/oracle_sql_developer/
+RUN bash $INST_SCRIPTS/oracle_sql_developer/install_oracle_sql_developer.sh && rm -rf $INST_SCRIPTS/oracle_sql_developer/
+
+### Install MySQL-Workbench
+COPY ./src/dbs2/install/mysql-workbench-oracle $INST_SCRIPTS/mysql-workbench/
+RUN bash $INST_SCRIPTS/mysql-workbench/install_mysql-workbench.sh && rm -rf $INST_SCRIPTS/mysql-workbench/
+
+### Install Neo4j-Desktop
+COPY ./src/dbs2/install/neo4j-desktop $INST_SCRIPTS/neo4j-desktop/
+RUN bash $INST_SCRIPTS/neo4j-desktop/install_neo4j-desktop.sh && rm -rf $INST_SCRIPTS/neo4j-desktop/
+
+### Install Cassandra
+COPY ./src/dbs2/install/cassandra $INST_SCRIPTS/cassandra/
+RUN bash $INST_SCRIPTS/cassandra/install_cassandra.sh && rm -rf $INST_SCRIPTS/cassandra/
+
+### Sudo
+RUN apt-get update \  
+  && apt-get install -y sudo \
+  && echo 'mki ALL=(ALL) NOPASSWD: ALL' >>/etc/sudoers \
+  && rm -rf /var/lib/apt/list/*
+
+### Configuration
+#ADD ./src/common/scripts $STARTUPDIR
+RUN $STARTUPDIR/set_user_permission.sh $HOME
+
+RUN chown 1000:0 $HOME
+
+ENV HOME /home/mki
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+
+USER 1000
+
+#CMD ["--tail-log"]
+#CMD ["bash", "$INST_SCRIPTS/startup.sh"]
