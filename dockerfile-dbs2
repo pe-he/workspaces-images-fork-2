@@ -75,6 +75,10 @@ RUN bash $INST_SCRIPTS/redis/install_redis.sh && rm -rf $INST_SCRIPTS/redis/
 COPY ./src/dbs2/install/mongodb $INST_SCRIPTS/mongodb/
 RUN bash $INST_SCRIPTS/mongodb/install_mongodb.sh && rm -rf $INST_SCRIPTS/mongodb/
 
+### Install MongoDB-Compass
+COPY ./src/dbs2/install/mongodb-compass $INST_SCRIPTS/mongodb-compass/
+RUN bash $INST_SCRIPTS/mongodb-compass/install_mongodb-compass.sh && rm -rf $INST_SCRIPTS/mongodb-compass/
+
 ### Install Oracle SQL Developer
 COPY ./src/dbs2/install/oracle_sql_developer $INST_SCRIPTS/oracle_sql_developer/
 RUN bash $INST_SCRIPTS/oracle_sql_developer/install_oracle_sql_developer.sh && rm -rf $INST_SCRIPTS/oracle_sql_developer/
