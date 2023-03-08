@@ -10,6 +10,6 @@ set -ex
 #rm mongodb-compass_1.33.1_amd64.deb
 
 # Desktop Icon
-cp $INST_SCRIPTS/mongodb-compass/mongodb-compass.desktop /usr/share/applications/
-cp /usr/share/applications/mongodb-compass.desktop $HOME/Desktop/
-chmod +x $HOME/Desktop/mongodb-compass.desktop
+#cp $INST_SCRIPTS/mongodb-compass/mongodb-compass.desktop /usr/share/applications/
+#cp /usr/share/applications/mongodb-compass.desktop $HOME/Desktop/
+#chmod +x $HOME/Desktop/mongodb-compass.desktop
